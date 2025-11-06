@@ -1,1 +1,11 @@
+---
+title: "STA 198 Project"
+author: ""
+format: pdf
+---
+
+
+```{r}
+
+```
 
