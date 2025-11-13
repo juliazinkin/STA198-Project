@@ -25,6 +25,29 @@ data <- read_csv("DonorHyperglycemia.csv")
 ```
 
 ```{r}
+  ggplot(data = data, aes(x = glurange)) +
+      geom_histogram()  +
+  labs(
+    title = "Distribution of Range of Glucose in Liver Graft of Donors",
+    x = "Range of Glucose in Liver Graft",
+    y = "Count"
+  )
+
+```
+
+```{r}
+  ggplot(data = data, aes(x = glusd)) +
+      geom_histogram()  +
+  labs(
+    title = "Distribution of Standard Deviations of Glucose in Liver Graft of Donors",
+    x = "Standard Deviations of Glucose in Liver Graft",
+    y = "Count"
+  )
+
+```
+
+
+```{r}
 data <- data |> 
   mutate(delayed_fn = factor(delayed_fn, labels = c("No Graft Dysfunction", "Graft Dysfunction")))
 boxplot(glutwa ~ delayed_fn, data = data,
