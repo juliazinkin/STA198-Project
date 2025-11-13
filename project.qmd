@@ -35,12 +35,15 @@ boxplot(glutwa ~ delayed_fn, data = data,
 
 
 ```{r}
-ggplot(data = data, mapping = aes(x = glurange, y = glutwa)) +
-  geom_point() +
+ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
+  geom_histogram(alpha = 0.7, position = "identity", bins = 30) +
   labs(
-    title = "Relationship Between Range of Glucose Observed and Time Weighted Average of Glucose Observations in Liver Graft",
-    x = "Glucose Range",
-    y = "TWA of Glucose Observations"
-  )
+    title = "Distribution of TWA Glucose by Graft Dysfunction Status",
+    x = "TWA glucose (mg/dL)",
+    y = "Count",
+    fill = "Delayed liver graft function"
+  ) +
+  theme_bw() +
+  theme(plot.title = element_text(size = 14, face = "bold"))
 
 ```
