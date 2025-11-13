@@ -32,3 +32,15 @@ boxplot(glutwa ~ delayed_fn, data = data,
          ylab = "Time weighted average of glucose obersrvations in liver graft")
 
 ```
+
+
+```{r}
+ggplot(data = data, mapping = aes(x = glurange, y = glutwa)) +
+  geom_point() +
+  labs(
+    title = "Relationship Between Range of Glucose Observed and Time Weighted Average of Glucose Observations in Liver Graft",
+    x = "Glucose Range",
+    y = "TWA of Glucose Observations"
+  )
+
+```
