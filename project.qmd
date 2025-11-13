@@ -86,5 +86,7 @@ model_glutwa <- glm(delayed_fn ~ glutwa,
                     family = binomial,
                     data = data)
 summary(model_glutwa)
+plot(model_glutwa)
 ```
+
 In this logistic regression model, donor time-weighted average glucose (TWA glucose) was not a statistically significant predictor of delayed liver graft dysfunction. The estimated coefficient for glutwa was 0.00298 (SE = 0.00172, p = 0.083), indicating that higher donor glucose levels were associated with slightly higher odds of delayed graft dysfunction. However, this association did not reach conventional levels of statistical significance at alpha = .05. Each 1 mg/dL increase in donor TWA glucose corresponds to an estimated 0.3% increase in the odds of delayed graft dysfunction (OR = exp(0.00298) = 1.003). This effect is very small in magnitude and the p-value suggests that the data do not provide strong evidence of a meaningful relationship.
