@@ -47,3 +47,13 @@ ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
   theme(plot.title = element_text(size = 14, face = "bold"))
 
 ```
+
+
+```{r}
+ggplot(data, aes(x = factor(delayed_fn))) +
+  geom_bar(fill = "blue") +
+  scale_x_discrete(labels = c("No Graft Dysfunction", "Delayed Graft Dysfunction")) +
+  labs(title = "Graft Dysfunction Rate",
+       x = "Outcome",
+       y = "Count")
+```
