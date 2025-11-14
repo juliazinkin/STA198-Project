@@ -1,11 +1,12 @@
 ---
 title: "STA 198 Project"
-author: ""
+author: "Julia Zinkin, Sydney Shankman, Christine Lee, Gabrielle Saft"
 format: pdf
 ---
 
 
 ```{r}
+#| echo: false
 library(tidyverse)
 library(ggplot2)
 data <- read_csv("DonorHyperglycemia.csv")
@@ -14,6 +15,7 @@ data <- read_csv("DonorHyperglycemia.csv")
 ###Exploratory Analysis
 
 ```{r}
+#| echo: false
   ggplot(data = data, aes(x = glutwa)) +
       geom_histogram()  +
   labs(
@@ -25,6 +27,7 @@ data <- read_csv("DonorHyperglycemia.csv")
 ```
 
 ```{r}
+#| echo: false
   ggplot(data = data, aes(x = glurange)) +
       geom_histogram()  +
   labs(
@@ -36,6 +39,7 @@ data <- read_csv("DonorHyperglycemia.csv")
 ```
 
 ```{r}
+#| echo: false
   ggplot(data = data, aes(x = glusd)) +
       geom_histogram()  +
   labs(
@@ -46,8 +50,19 @@ data <- read_csv("DonorHyperglycemia.csv")
 
 ```
 
+```{r}
+#| echo: false
+ggplot(data, aes(x = factor(delayed_fn))) +
+  geom_bar(fill = "blue") +
+  scale_x_discrete(labels = c("No Graft Dysfunction", "Delayed Graft Dysfunction")) +
+  labs(title = "Graft Dysfunction Rate",
+       x = "Outcome",
+       y = "Count")
+```
+
 
 ```{r}
+#| echo: false
 data <- data |> 
   mutate(delayed_fn = factor(delayed_fn, labels = c("No Graft Dysfunction", "Graft Dysfunction")))
 boxplot(glutwa ~ delayed_fn, data = data,
@@ -58,6 +73,7 @@ boxplot(glutwa ~ delayed_fn, data = data,
 
 
 ```{r}
+#| echo: false
 ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
   geom_histogram(alpha = 0.7, position = "identity", bins = 30) +
   labs(
@@ -72,16 +88,9 @@ ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
 ```
 
 
-```{r}
-ggplot(data, aes(x = factor(delayed_fn))) +
-  geom_bar(fill = "blue") +
-  scale_x_discrete(labels = c("No Graft Dysfunction", "Delayed Graft Dysfunction")) +
-  labs(title = "Graft Dysfunction Rate",
-       x = "Outcome",
-       y = "Count")
-```
 
 ```{r}
+#| echo: false
 model_glutwa <- glm(delayed_fn ~ glutwa,
                     family = binomial,
                     data = data)
@@ -92,6 +101,7 @@ plot(model_glutwa)
 In this logistic regression model, donor time-weighted average glucose (TWA glucose) was not a statistically significant predictor of delayed liver graft dysfunction. The estimated coefficient for glutwa was 0.00298 (SE = 0.00172, p = 0.083), indicating that higher donor glucose levels were associated with slightly higher odds of delayed graft dysfunction. However, this association did not reach conventional levels of statistical significance at alpha = .05. Each 1 mg/dL increase in donor TWA glucose corresponds to an estimated 0.3% increase in the odds of delayed graft dysfunction (OR = exp(0.00298) = 1.003). This effect is very small in magnitude and the p-value suggests that the data do not provide strong evidence of a meaningful relationship.
 
 ```{r}
+#| echo: false
 model <- glm(
   delayed_fn ~ log2(glutwa) + log2(glurange) + log2(glusd) +
     d_age + r_bmi + r_age + cold_ischemia + sbp_lt_90 + hemo_instability + sodium + steatosis + donorrisk,
