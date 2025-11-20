@@ -26,7 +26,7 @@ In our analysis, we focus on TWA glucose (glutwa) as the primary predictor of in
 Before modeling, exploratory data analysis was conducted to visualize the distributions of TWA glucose, range of glucose, standard deviation of glucose, and graft dysfunction rate. We then examined differences in glucose levels between grafts with and without delayed function using histograms and boxplots. Finally, we created two logistic regression models: a model examining the association between donor TWA glucose and delayed graft function, and a multivariable model that included glucose level, glucose variability metrics, and relevant donor and graft characteristics to assess whether hyperglycemia remained predictive after accounting for potential confounders.
 
 
-##Exploratory Analysis
+**Exploratory Analysis**
 
 ```{r}
 #| echo: false
@@ -106,7 +106,7 @@ ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
 
 ```
 
-
+**Results**
 
 ```{r}
 #| echo: false
