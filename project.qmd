@@ -84,8 +84,9 @@ ggplot(data, aes(x = factor(delayed_fn))) +
 data <- data |> 
   mutate(delayed_fn = factor(delayed_fn, labels = c("No Graft Dysfunction", "Graft Dysfunction")))
 boxplot(glutwa ~ delayed_fn, data = data,
-         main = "TWA of glucose obersrvations in liver graft vs delayed liver function",
-         ylab = "Time weighted average of glucose obersrvations in liver graft")
+         main = "TWA of glucose obersrvations in liver graft 
+        vs delayed liver function",
+         ylab = "TWA of glucose obersrvations in liver graft")
 
 ```
 
