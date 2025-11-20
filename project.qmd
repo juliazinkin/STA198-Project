@@ -129,5 +129,6 @@ model <- glm(
 )
 
 summary(model)
+plot(model)
 
 ```
