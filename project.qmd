@@ -3,7 +3,6 @@ title: "STA 198 Project"
 author: "Julia Zinkin, Sydney Shankman, Christine Lee, Gabrielle Saft"
 format: pdf
 ---
-
 ```{r message =FALSE}
 #| echo: false
 library(tidyverse)
@@ -16,8 +15,7 @@ Liver transplantation has served as a life-saving intervention for individuals w
 
 Specific to liver transplantation, several donor-focused studies provide important background information. For example, Abraldes et al. (2010) found that donor diabetes and glucose dysregulation were associated with increased rates of early graft dysfunction, suggesting that pre-procurement metabolic instability may compromise the stability of liver cells. Mathur et al. (2017) similarly reported that donors with diabetes had higher rates of graft failure, though the mechanism, whether chronic hyperglycemia or associated comorbidities, remained unclear. More recent analyses, such as the 2023 study by Krishna et al., have shown that donor hyperglycemia correlates with increased inflammatory markers and worse early graft function, particularly when glucose variability is high. Other work has focused on the donor ICU course, where acute stress hyperglycemia has been associated with higher ALT/AST release, impaired microcirculation, and heightened susceptibility to reperfusion injury after procurement.
 
-Beyond transplantation, evidence from broader surgical literature reinforces these concerns. Studies of postoperative hyperglycemics, such as the multicenter work published in Gastroenterología de México, have consistently demonstrated higher rates of infectious and metabolic complications in hyperglycemic patients, supporting the idea that elevated glucose levels contribute to systemic inflammatory dysregulation. Similarly, hepatobiliary surgical cohorts report worse outcomes when patients experience perioperative glucose spikes, lending biological plausibility to the hypothesis that donor hyperglycemia could negatively affect graft performance in recipients.
-Together, these findings highlight a critical knowledge gap: despite growing evidence that hyperglycemia can impair hepatic cellular function and immune balance, the specific relationship between donor hyperglycemia and early post-transplant liver function remains unclear, with studies varying in definitions of hyperglycemia, outcome measures, and control for confounding donor characteristics.
+Beyond transplantation, evidence from broader surgical literature reinforces these concerns. Studies of postoperative hyperglycemics, such as the multicenter work published in Gastroenterología de México, have consistently demonstrated higher rates of infectious and metabolic complications in hyperglycemic patients, supporting the idea that elevated glucose levels contribute to systemic inflammatory dysregulation. Similarly, hepatobiliary surgical cohorts report worse outcomes when patients experience perioperative glucose spikes, lending biological plausibility to the hypothesis that donor hyperglycemia could negatively affect graft performance in recipients. Together, these findings highlight a critical knowledge gap: despite growing evidence that hyperglycemia can impair hepatic cellular function and immune balance, the specific relationship between donor hyperglycemia and early post-transplant liver function remains unclear, with studies varying in definitions of hyperglycemia, outcome measures, and control for confounding donor characteristics.
 
 Thus, this study seeks to address a central question: Among patients receiving a liver transplant, is donor hyperglycemia, by itself or in combination with other donor predictors, associated with impaired liver graft function in transplant recipients?
 
@@ -25,7 +23,7 @@ The dataset used in this analysis originates from a retrospective clinical study
 
 Donor glucose data were extracted from routine clinical monitoring, and three measures of glycemic status were computed: the time-weighted average (TWA) glucose, the range of glucose observations, and the standard deviation of glucose observations. These metrics were used to capture both absolute hyperglycemia and glucose variability. Because donor glucose level could be tightly managed if doing so improved outcomes, it is important to understand whether they influence graft performance.
 
-The primary outcome used in this project is delayed liver graft function, a binary variable indicating whether the graft demonstrated early dysfunction. In the original clinical definition, dysfunction included either primary nonfunction (death or retransplant within one week) or biochemical evidence of significant liver injury (AST > 2000 U/L or prothrombin time > 16 seconds between postoperative days 2–7).
+The primary outcome used in this project is delayed liver graft function, a binary variable indicating whether the graft demonstrated early dysfunction. In the original clinical definition, dysfunction included either primary nonfunction (death or retransplant within one week) or biochemical evidence of significant liver injury (AST \> 2000 U/L or prothrombin time \> 16 seconds between postoperative days 2–7).
 
 In our analysis, we focus on TWA glucose (glutwa) as the primary predictor of interest and delayed graft function (delayed_fn) as the response variable. Additional donor-level variables available in the dataset include donor age, cause of death, race, sex, donor risk index, terminal sodium concentration, steatosis percentage, length of time systolic blood pressure was below 90 mmHg, and indicators of intraoperative hemodynamic instability. Recipient level variables in the dataset include age, weight, height, bmi, race, and sex. However, our central question is whether higher donor glucose levels are associated with an increased risk of delayed graft dysfunction.
 
@@ -33,9 +31,9 @@ Before modeling, exploratory data analysis was conducted to visualize the distri
 
 **Methodology**
 
-Using a logistic regression model, which is the proposed analysis, is appropriate given that the main goal in our data is to determine if there is a correlation between patient hyperglycemia and liver function after a transplant and our data uses the variable delayed_fn which is a binary variable. Given our variables, logistic regression was chosen as it is commonly used to analyze binary clinical outcomes (delayed_fn) and will allow us to easily interpret the results and outcome. We used plots prior to see distribution, skew, and outliers to be used to determine transformations for the logistic regression. 
+Using a logistic regression model, which is the proposed analysis, is appropriate given that the main goal in our data is to determine if there is a correlation between patient hyperglycemia and liver function after a transplant and our data uses the variable delayed_fn which is a binary variable. Given our variables, logistic regression was chosen as it is commonly used to analyze binary clinical outcomes (delayed_fn) and will allow us to easily interpret the results and outcome. We used plots prior to see distribution, skew, and outliers to be used to determine transformations for the logistic regression.
 
-Before building our full multivariable model, we first fit a logistic regression using only the glucose-related predictors, log₂(GLUTWA), log₂(GLURANGE), and log₂(GLUSD), to examine their isolated association with delayed graft dysfunction and to assess basic model behavior. 
+Before building our full multivariable model, we first fit a logistic regression using only the glucose-related predictors, log₂(GLUTWA), log₂(GLURANGE), and log₂(GLUSD), to examine their isolated association with delayed graft dysfunction and to assess basic model behavior.
 
 Variables used in our logistic regression are delayed graft function (the outcome), and TWA glucose, glucose range, glucose SD, donor BMI, donor and recipient age, CIT (cold ischemia time), WIT (warm ischemia time), systolic blood pressure lower than 90, hemo instability, sodium, steatosis, donor risk. TWA glucose, glucose range, and glucose SD are all log2-transformed. The formula can be seen below.
 
@@ -45,7 +43,7 @@ logit(Pr⁡(Y=1/X)) = β0 + β1(GLUTWA) + β2(GLURANGE) + β3(GLUSD) + β4(D_Age
 
 where the logit link transforms probabilities onto the real line. We selected logistic regression because it allows us to quantify how each measure of donor hyperglycemia is associated with the odds of post-transplant graft dysfunction while controlling for other predictors.
 
-Several key assumptions underlie this model. Logistic regression assumes (1) independence of observations, (2) a linear relationship between each predictor and the log-odds of the outcome, (3) absence of high multicollinearity among predictors, and (4) sufficiently large sample size to ensure stable maximum likelihood estimates. 
+Several key assumptions underlie this model. Logistic regression assumes (1) independence of observations, (2) a linear relationship between each predictor and the log-odds of the outcome, (3) absence of high multicollinearity among predictors, and (4) sufficiently large sample size to ensure stable maximum likelihood estimates.
 
 All model assumptions were reasonably satisfied based on both the study design and our diagnostic checks. Independence of observations holds because, according to the original study design, each donor–recipient pair represents a single, unrelated transplantation event, ensuring no repeated measures or clustering within the dataset. Though the linearity of the predictors with the log-odds of graft dysfunction was not fully supported by our residual and diagnostic plots, we ensured the linearity assumption was met by doing a log2 transformation of the GLUTWA, GLURANGE, and GLUSD predictor variables. Multicollinearity was not a concern, as inspection of the correlation structure among GLUTWA, GLURANGE, and GLUSD indicated no excessively strong linear relationships. Finally, the large sample size of the original dataset ensures stable maximum likelihood estimation, providing sufficient events per predictor for reliable logistic regression inference. Together, these checks indicate that the assumptions required for a valid logistic regression analysis were met.
 
@@ -56,6 +54,8 @@ This modeling framework directly supports our study goals. It allows us to estim
 ```{r}
 #| echo: false
 #| message: false
+#| fig-height: 2
+#| fig-width: 8
   ggplot(data = data, aes(x = glutwa)) +
       geom_histogram()  +
   labs(
@@ -68,6 +68,8 @@ This modeling framework directly supports our study goals. It allows us to estim
 
 ```{r}
 #| echo: false
+#| fig-height: 2
+#| fig-width: 5
 ggplot(data, aes(x = factor(delayed_fn))) +
   geom_bar(fill = "blue") +
   scale_x_discrete(labels = c("No Graft Dysfunction", "Delayed Graft Dysfunction")) +
@@ -76,9 +78,10 @@ ggplot(data, aes(x = factor(delayed_fn))) +
        y = "Count")
 ```
 
-
 ```{r}
 #| echo: false
+#| fig-height: 4
+#| fig-width: 5
 data <- data |> 
   mutate(delayed_fn = factor(delayed_fn, labels = c("No Graft Dysfunction", "Graft Dysfunction")))
 boxplot(glutwa ~ delayed_fn, data = data,
@@ -88,9 +91,10 @@ boxplot(glutwa ~ delayed_fn, data = data,
 
 ```
 
-
 ```{r}
 #| echo: false
+#| fig-height: 2
+#| fig-width: 5
 ggplot(data, aes(x = glutwa, fill = delayed_fn)) +
   geom_histogram(alpha = 0.7, position = "identity", bins = 30) +
   labs(
@@ -141,7 +145,7 @@ In the logistic regression model, TWA glucose was entered as the sole predictor 
 
 These results suggest that, when considered alone and without adjustment for other clinical factors, donor TWA glucose is not a strong predictor of delayed liver graft function. The model addresses our research question by indicating that donor hyperglycemia, as measured by TWA glucose in isolation, does not meaningfully increase the risk of early graft dysfunction.
 
-In the second logistic regression model, we incorporated donor glucose measures alongside key clinical covariates to evaluate whether donor hyperglycemia remains associated with delayed graft dysfunction after adjusting for other relevant factors. When TWA glucose, glucose range, and glucose standard deviation, each log₂-transformed to improve linearity, were entered together with donor age, donor BMI, cold ischemia time, systolic blood pressure <90 minutes, hemodynamic instability, terminal sodium, steatosis percentage, and donor risk index, none of the glucose-related predictors reached statistical significance (all p-values > 0.05).
+In the second logistic regression model, we incorporated donor glucose measures alongside key clinical covariates to evaluate whether donor hyperglycemia remains associated with delayed graft dysfunction after adjusting for other relevant factors. When TWA glucose, glucose range, and glucose standard deviation, each log₂-transformed to improve linearity, were entered together with donor age, donor BMI, cold ischemia time, systolic blood pressure \<90 minutes, hemodynamic instability, terminal sodium, steatosis percentage, and donor risk index, none of the glucose-related predictors reached statistical significance (all p-values \> 0.05).
 
 Although the signs of the estimated coefficients for log(TWA glucose) and log(glucose SD) were positive, indicating that higher mean glucose or greater glucose variability was directionally associated with increased odds of delayed graft dysfunction, the effect sizes were small and imprecisely estimated. For example, the coefficient for log(TWA glucose) indicates that doubling the donor’s TWA glucose would increase the odds of delayed dysfunction by only a modest multiplicative factor, but the wide confidence interval suggests substantial uncertainty, preventing any definitive conclusion. In contrast, several non–glucose predictors showed stronger and more meaningful associations with the outcome. Variables such as cold ischemia time and donor risk index exhibited statistically significant positive coefficients, suggesting that these established clinical risk factors exert greater influence on graft performance than donor glucose exposure. Overall, the multivariable model indicates that once donor clinical status and organ-related factors are accounted for, donor hyperglycemia, whether measured by mean level or variability, does not independently predict delayed graft dysfunction in this cohort.
 
@@ -149,14 +153,6 @@ Although the signs of the estimated coefficients for log(TWA glucose) and log(gl
 
 Using our data, and tests above, we found that there was not a statistically significant association between donor glucose levels and delayed graft function. These results suggest that donor hyperglycemia should not be considered a major risk factor when evaluating liver donors, especially relative to stronger predictors such as cold ischemia time or donor risk index. Because donor hyperglycemia did not meaningfully influence early graft function, improving donor glucose control is unlikely to improve liver graft outcomes so immense resources or time do not need to be spent on glycemic optimization in donors, especially in time-sensitive settings. One possible explanation for the lack of association is that the liver is very good at regulating metabolism, so it may be able to handle short-term spikes in glucose in the donor before the organ is procured and not cause any transplant impacts. This lack of association indicates that factors beyond donor glucose exposure are likely more critical in early graft dysfunction, so it would likely be more effective to choose other factors to focus on when choosing and evaluating liver donors.
 
-
 **Work Cited**
 
-Builes-Montaño, C. E., Montoya, J. F., Aguilar Londoño, C., Palacios Bayona, K. L., Restrepo Gutiérrez, J. C., Gutiérrez Restrepo, J., Arango Toro, C. M., & Jaimes Barragán, F. A. (2014). Complications associated with hyperglycemia in liver transplant patients. Revista de Gastroenterología de México, 79(3), 180–186. https://doi.org/10.1016/j.rgmxen.2014.08.004 
-García-Martínez, R., & Fernández, J. (2022). Clinical impact of metabolic complications in liver transplantation. Annals of Hepatology, 27, 100727. https://doi.org/10.1016/j.aohep.2022.100727 
-Perez-Protto, S. E., Reynolds, L. F., Dalton, J. E., Taketomi, T., Irefin, S. A., Parker, B. M., Quintini, C., & Sessler, D. I. (2014). Deceased donor hyperglycemia and liver graft dysfunction. Progress in Transplantation, 24(2), 106–112. https://doi.org/10.7182/pit2014737
-Reddy, M. S., Narasimhan, G., Cherian, P. T., & Rela, M. (2013). Matching donor to recipient in liver transplantation: Relevance in clinical practice. World Journal of Hepatology, 5(11), 603–611. https://doi.org/10.4254/wjh.v5.i11.603 
-Shi, Y., Zhang, H., & Zhu, Z. (2023). A systematic review of the factors significantly influencing the quality of life of living liver donors. International journal of nursing sciences, 10(4), 579–586. https://doi.org/10.1016/j.ijnss.2023.09.012 
-Wallia, A., Parikh, N. D., Molitch, M. E., Mahler, E., Tian, L., Huang, J. J., & Levitsky, J. (2010). Posttransplant hyperglycemia is associated with increased risk of liver allograft rejection. Transplantation, 89(2), 222–226. https://doi.org/10.1097/TP.0b013e3181c3c2ff 
-Werner, K. T., Mackey, P. A., Castro, J. C., Carey, E. J., Chakkera, H. A., & Cook, C. B. (2016). Hyperglycemia during the immediate period following liver transplantation. Future science OA, 2(1), FSO97. https://doi.org/10.4155/fsoa-2015-0010 
-
+Builes-Montaño, C. E., Montoya, J. F., Aguilar Londoño, C., Palacios Bayona, K. L., Restrepo Gutiérrez, J. C., Gutiérrez Restrepo, J., Arango Toro, C. M., & Jaimes Barragán, F. A. (2014). Complications associated with hyperglycemia in liver transplant patients. Revista de Gastroenterología de México, 79(3), 180–186. https://doi.org/10.1016/j.rgmxen.2014.08.004 García-Martínez, R., & Fernández, J. (2022). Clinical impact of metabolic complications in liver transplantation. Annals of Hepatology, 27, 100727. https://doi.org/10.1016/j.aohep.2022.100727 Perez-Protto, S. E., Reynolds, L. F., Dalton, J. E., Taketomi, T., Irefin, S. A., Parker, B. M., Quintini, C., & Sessler, D. I. (2014). Deceased donor hyperglycemia and liver graft dysfunction. Progress in Transplantation, 24(2), 106–112. https://doi.org/10.7182/pit2014737 Reddy, M. S., Narasimhan, G., Cherian, P. T., & Rela, M. (2013). Matching donor to recipient in liver transplantation: Relevance in clinical practice. World Journal of Hepatology, 5(11), 603–611. https://doi.org/10.4254/wjh.v5.i11.603 Shi, Y., Zhang, H., & Zhu, Z. (2023). A systematic review of the factors significantly influencing the quality of life of living liver donors. International journal of nursing sciences, 10(4), 579–586. https://doi.org/10.1016/j.ijnss.2023.09.012 Wallia, A., Parikh, N. D., Molitch, M. E., Mahler, E., Tian, L., Huang, J. J., & Levitsky, J. (2010). Posttransplant hyperglycemia is associated with increased risk of liver allograft rejection. Transplantation, 89(2), 222–226. https://doi.org/10.1097/TP.0b013e3181c3c2ff Werner, K. T., Mackey, P. A., Castro, J. C., Carey, E. J., Chakkera, H. A., & Cook, C. B. (2016). Hyperglycemia during the immediate period following liver transplantation. Future science OA, 2(1), FSO97. https://doi.org/10.4155/fsoa-2015-0010
