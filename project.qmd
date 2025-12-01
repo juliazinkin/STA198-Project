@@ -68,33 +68,6 @@ This modeling framework directly supports our study goals. It allows us to estim
 
 ```{r}
 #| echo: false
-#| message: false
-  ggplot(data = data, aes(x = glurange)) +
-      geom_histogram()  +
-  labs(
-    title = "Distribution of Range of Glucose in Liver Graft of Donors",
-    x = "Range of Glucose in Liver Graft",
-    y = "Count"
-  )
-
-```
-
-```{r}
-#| echo: false
-#| message: false
-
-  ggplot(data = data, aes(x = glusd)) +
-      geom_histogram()  +
-  labs(
-    title = "Distribution of Standard Deviations of Glucose in Liver Graft of Donors",
-    x = "Standard Deviations of Glucose in Liver Graft",
-    y = "Count"
-  )
-
-```
-
-```{r}
-#| echo: false
 ggplot(data, aes(x = factor(delayed_fn))) +
   geom_bar(fill = "blue") +
   scale_x_discrete(labels = c("No Graft Dysfunction", "Delayed Graft Dysfunction")) +
@@ -158,7 +131,7 @@ summary(model)
 
 **Discussion**
 
-The aim of our analysis was to determine: among patients receiving a liver transplant, is donor hyperglycemia, by itself or in combination with other donor predictors, associated with impaired liver graft function in transplant recipients? Before fitting our models, we conducted exploratory data analysis to visualize donor glucose patterns and their potential relationship to delayed graft dysfunction. These descriptive plots allowed us to assess the distribution of glycemic measures and identify whether any clear group differences emerged prior to formal modeling. We first visualized the distribution of donor TWA glucose using a histogram. This plot showed a right-skewed distribution, with most donors clustered between roughly 100–200 mg/dL and fewer donors exhibiting very high glucose values. A similar pattern appeared in the histogram of glucose range, “Distribution of Range of Glucose in Liver Graft of Donors,” where most donors displayed moderate variability with a long right tail.The histogram of glucose standard deviation, “Distribution of Standard Deviations of Glucose in Liver Graft of Donors,” also revealed predominantly low-to-moderate variability and a smaller group of donors with more extreme fluctuations. Together, these three distributional plots indicated that severe hyperglycemia or large glucose swings were relatively uncommon.
+The aim of our analysis was to determine: among patients receiving a liver transplant, is donor hyperglycemia, by itself or in combination with other donor predictors, associated with impaired liver graft function in transplant recipients? Before fitting our models, we conducted exploratory data analysis to visualize donor glucose patterns and their potential relationship to delayed graft dysfunction. These descriptive plots allowed us to assess the distribution of glycemic measures and identify whether any clear group differences emerged prior to formal modeling. We first visualized the distribution of donor TWA glucose using a histogram. This plot showed a right-skewed distribution, with most donors clustered between roughly 100–200 mg/dL and fewer donors exhibiting very high glucose values. This indicates that severe hyperglycemia or large glucose swings were relatively uncommon.
 
 We then examined the frequency of the outcome using the bar plot labeled “Graft Dysfunction Rate,” which showed that most grafts did not experience delayed dysfunction, highlighting the imbalance between outcome groups. To assess whether donor glucose levels differed visually between groups, we used a boxplot, which compared TWA glucose between grafts with and without dysfunction. Although the median TWA glucose appeared slightly higher among grafts with dysfunction, the boxes and whiskers overlapped substantially. This pattern was reinforced by the overlaid histograms in “Distribution of TWA Glucose by Graft Dysfunction Status,” where the two curves, representing donors with and without dysfunction, showed nearly identical shapes, with only a minor rightward shift for the dysfunction group.
 
