@@ -155,6 +155,7 @@ model <- glm(
 )
 
 summary(model)
-plot(model)
 
 ```
+
+**Discussion**
