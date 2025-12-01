@@ -35,17 +35,9 @@ Using a logistic regression model, which is the proposed analysis, is appropriat
 
 Before building our full multivariable model, we first fit a logistic regression using only the glucose-related predictors, log₂(GLUTWA), log₂(GLURANGE), and log₂(GLUSD), to examine their isolated association with delayed graft dysfunction and to assess basic model behavior.
 
-Variables used in our logistic regression are delayed graft function (the outcome), and TWA glucose, glucose range, glucose SD, donor BMI, donor and recipient age, CIT (cold ischemia time), WIT (warm ischemia time), systolic blood pressure lower than 90, hemo instability, sodium, steatosis, donor risk. TWA glucose, glucose range, and glucose SD are all log2-transformed. The formula can be seen below.
+Variables used in our logistic regression are delayed graft function (the outcome), and TWA glucose, glucose range, glucose SD, donor BMI, donor and recipient age, CIT (cold ischemia time), WIT (warm ischemia time), systolic blood pressure lower than 90, hemo instability, sodium, steatosis, donor risk. TWA glucose, glucose range, and glucose SD are all log2-transformed. Our primary inferential approach is logistic regression, which is appropriate because the response variable Y takes only two values: Y=1 for delayed graft dysfunction and Y=0 otherwise. We selected logistic regression because it allows us to quantify how each measure of donor hyperglycemia is associated with the odds of post-transplant graft dysfunction while controlling for other predictors.
 
-Our primary inferential approach is logistic regression, which is appropriate because the response variable Y takes only two values: Y=1 for delayed graft dysfunction and Y=0 otherwise. The general model formulation is
-
-logit(Pr⁡(Y=1/X)) = β0 + β1(GLUTWA) + β2(GLURANGE) + β3(GLUSD) + β4(D_Age) + β5(R_BMI)+ β6(R_Age) + β7(Cold_Ischemia) + β8(SBP_LT_90) + β9(Hemo_Instability) + β10(Sodium) + β11(Steatosis) + β12(Donorrisk) + ε,
-
-where the logit link transforms probabilities onto the real line. We selected logistic regression because it allows us to quantify how each measure of donor hyperglycemia is associated with the odds of post-transplant graft dysfunction while controlling for other predictors.
-
-Several key assumptions underlie this model. Logistic regression assumes (1) independence of observations, (2) a linear relationship between each predictor and the log-odds of the outcome, (3) absence of high multicollinearity among predictors, and (4) sufficiently large sample size to ensure stable maximum likelihood estimates.
-
-All model assumptions were reasonably satisfied based on both the study design and our diagnostic checks. Independence of observations holds because, according to the original study design, each donor–recipient pair represents a single, unrelated transplantation event, ensuring no repeated measures or clustering within the dataset. Though the linearity of the predictors with the log-odds of graft dysfunction was not fully supported by our residual and diagnostic plots, we ensured the linearity assumption was met by doing a log2 transformation of the GLUTWA, GLURANGE, and GLUSD predictor variables. Multicollinearity was not a concern, as inspection of the correlation structure among GLUTWA, GLURANGE, and GLUSD indicated no excessively strong linear relationships. Finally, the large sample size of the original dataset ensures stable maximum likelihood estimation, providing sufficient events per predictor for reliable logistic regression inference. Together, these checks indicate that the assumptions required for a valid logistic regression analysis were met.
+Several key assumptions underlie this model. Logistic regression assumes (1) independence of observations, (2) a linear relationship between each predictor and the log-odds of the outcome, (3) absence of high multicollinearity among predictors, and (4) sufficiently large sample size to ensure stable maximum likelihood estimates. All model assumptions were reasonably satisfied based on both the study design and our diagnostic checks. Independence of observations holds because, according to the original study design, each donor–recipient pair represents a single, unrelated transplantation event, ensuring no repeated measures or clustering within the dataset. Though the linearity of the predictors with the log-odds of graft dysfunction was not fully supported by our residual and diagnostic plots, we ensured the linearity assumption was met by doing a log2 transformation of the glucose TWA, range, and standard deviation predictor variables. Multicollinearity was not a concern, as inspection of the correlation structure among the three variables indicated no excessively strong linear relationships. Finally, the large sample size of the original dataset ensures stable maximum likelihood estimation, providing sufficient events per predictor for reliable logistic regression inference. Together, these checks indicate that the assumptions required for a valid logistic regression analysis were met.
 
 This modeling framework directly supports our study goals. It allows us to estimate whether higher donor glucose levels, mean, range, or variability, are associated with worse post-transplant function, and to determine which glucose-related measures provide the strongest predictive signal. We complement this model with exploratory visualizations such as histograms, boxplots, and stratified distributions, which help assess the plausibility of assumptions and provide context for interpreting our regression results
 
@@ -68,7 +60,7 @@ This modeling framework directly supports our study goals. It allows us to estim
 
 ```{r}
 #| echo: false
-#| fig-height: 2
+#| fig-height: 1.7
 #| fig-width: 5
 ggplot(data, aes(x = factor(delayed_fn))) +
   geom_bar(fill = "blue") +
@@ -80,7 +72,7 @@ ggplot(data, aes(x = factor(delayed_fn))) +
 
 ```{r}
 #| echo: false
-#| fig-height: 4
+#| fig-height: 3
 #| fig-width: 5
 data <- data |> 
   mutate(delayed_fn = factor(delayed_fn, labels = c("No Graft Dysfunction", "Graft Dysfunction")))
