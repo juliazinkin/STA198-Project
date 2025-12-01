@@ -177,3 +177,15 @@ Although the signs of the estimated coefficients for log(TWA glucose) and log(gl
 **Conclusion**
 
 Using our data, and tests above, we found that there was not a statistically significant association between donor glucose levels and delayed graft function. These results suggest that donor hyperglycemia should not be considered a major risk factor when evaluating liver donors, especially relative to stronger predictors such as cold ischemia time or donor risk index. Because donor hyperglycemia did not meaningfully influence early graft function, improving donor glucose control is unlikely to improve liver graft outcomes so immense resources or time do not need to be spent on glycemic optimization in donors, especially in time-sensitive settings. One possible explanation for the lack of association is that the liver is very good at regulating metabolism, so it may be able to handle short-term spikes in glucose in the donor before the organ is procured and not cause any transplant impacts. This lack of association indicates that factors beyond donor glucose exposure are likely more critical in early graft dysfunction, so it would likely be more effective to choose other factors to focus on when choosing and evaluating liver donors.
+
+
+**Work Cited**
+
+Builes-Montaño, C. E., Montoya, J. F., Aguilar Londoño, C., Palacios Bayona, K. L., Restrepo Gutiérrez, J. C., Gutiérrez Restrepo, J., Arango Toro, C. M., & Jaimes Barragán, F. A. (2014). Complications associated with hyperglycemia in liver transplant patients. Revista de Gastroenterología de México, 79(3), 180–186. https://doi.org/10.1016/j.rgmxen.2014.08.004 
+García-Martínez, R., & Fernández, J. (2022). Clinical impact of metabolic complications in liver transplantation. Annals of Hepatology, 27, 100727. https://doi.org/10.1016/j.aohep.2022.100727 
+Perez-Protto, S. E., Reynolds, L. F., Dalton, J. E., Taketomi, T., Irefin, S. A., Parker, B. M., Quintini, C., & Sessler, D. I. (2014). Deceased donor hyperglycemia and liver graft dysfunction. Progress in Transplantation, 24(2), 106–112. https://doi.org/10.7182/pit2014737
+Reddy, M. S., Narasimhan, G., Cherian, P. T., & Rela, M. (2013). Matching donor to recipient in liver transplantation: Relevance in clinical practice. World Journal of Hepatology, 5(11), 603–611. https://doi.org/10.4254/wjh.v5.i11.603 
+Shi, Y., Zhang, H., & Zhu, Z. (2023). A systematic review of the factors significantly influencing the quality of life of living liver donors. International journal of nursing sciences, 10(4), 579–586. https://doi.org/10.1016/j.ijnss.2023.09.012 
+Wallia, A., Parikh, N. D., Molitch, M. E., Mahler, E., Tian, L., Huang, J. J., & Levitsky, J. (2010). Posttransplant hyperglycemia is associated with increased risk of liver allograft rejection. Transplantation, 89(2), 222–226. https://doi.org/10.1097/TP.0b013e3181c3c2ff 
+Werner, K. T., Mackey, P. A., Castro, J. C., Carey, E. J., Chakkera, H. A., & Cook, C. B. (2016). Hyperglycemia during the immediate period following liver transplantation. Future science OA, 2(1), FSO97. https://doi.org/10.4155/fsoa-2015-0010 
+
